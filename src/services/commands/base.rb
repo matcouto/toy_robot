@@ -10,5 +10,10 @@ module Commands
     def call(arguments = nil)
       raise NotImplementedError
     end
+
+    def position_within_bounds?(position)
+      !position.nil? &&
+        @table.position_within_bounds?(position)
+    end
   end
 end

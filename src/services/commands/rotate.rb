@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require './src/command_base'
-require 'byebug'
-
+require './src/services/commands/base'
 module Commands
-  class Rotate < CommandBase
+  class Rotate < Base
     CARDINAL_POINTS = %w[NORTH EAST SOUTH WEST].freeze
 
     def call(command)

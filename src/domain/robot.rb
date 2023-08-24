@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
-require './src/robot'
-require './src/position'
-require 'byebug'
+require './src/domain/robot'
+require './src/domain/position'
 
 class Robot
   def initialize

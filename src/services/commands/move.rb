@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require './src/command_base'
+require './src/services/commands/base'
 module Commands
-  class Move < CommandBase
+  class Move < Base
     def call(_command = nil)
       case @robot.direction
       when 'NORTH'

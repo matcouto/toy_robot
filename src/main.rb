@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require './src/toy_robot_game'
-require './src/board'
-require './src/robot'
+require './src/domain/board'
+require './src/domain/robot'
 
 puts 'Welcome to Toy Robot Game!'
 

@@ -8,7 +8,7 @@ class Position
 
   attr_accessor :x_axis, :y_axis
 
-  def current_position
-    [x_axis, y_axis]
+  def current
+    "#{x_axis},#{y_axis}"
   end
 end

@@ -10,7 +10,7 @@ module Commands
 
     def call(_command)
       current_position = @robot.position.clone
-      set_position_according_to_direction
+      set_position_based_on_direction
 
       return if position_within_bounds?(@robot.position)
 
@@ -19,7 +19,7 @@ module Commands
 
     private
 
-    def set_position_according_to_direction
+    def set_position_based_on_direction
       x_change, y_change = calculate_direction_change
       @robot.position.x_axis += x_change
       @robot.position.y_axis += y_change

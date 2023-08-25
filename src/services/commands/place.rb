@@ -7,10 +7,9 @@ module Commands
     include CustomExceptions
 
     def call(command)
-      position_direction_args = command.split(' ').last
-      x_axis, y_axis, direction = position_direction_args.split(',')
+      x_axis, y_axis, direction = parse_place_command(command)
       new_position = Position.new(x_axis.to_i, y_axis.to_i)
-      validate_position(new_position)
+      validate_new_position(new_position)
 
       @robot.position = new_position
       @robot.direction = direction
@@ -18,7 +17,12 @@ module Commands
 
     private
 
-    def validate_position(position)
+    def parse_place_command(command)
+      position_direction_args = command.split(' ').last
+      position_direction_args.split(',')
+    end
+
+    def validate_new_position(position)
       validate_position_format(position)
       validate_position_within_bounds(position)
     end

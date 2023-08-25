@@ -26,7 +26,7 @@ module Commands
       command_name = parse_command(command)
 
       raise CommandInvalidError, command_name unless COMMANDS.key?(command_name)
-      return unless robot.placed? || command_name == 'PLACE'
+      return unless robot.placed? || robot_first_move?(command_name)
 
       COMMANDS[command_name].new(
         table,
@@ -37,6 +37,10 @@ module Commands
     private
 
     attr_reader :table, :robot
+
+    def robot_first_move?(command_name)
+      command_name == 'PLACE'
+    end
 
     def parse_command(command)
       command.upcase.split(' ').first

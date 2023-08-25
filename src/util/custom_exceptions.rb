@@ -3,7 +3,6 @@
 module CustomExceptions
   class CommandInvalidError < StandardError
     def initialize(command)
-      puts "Invalid command: #{command}"
       super("Invalid command: #{command}")
     end
   end

@@ -1,6 +1,7 @@
 /tmp/
 
 .solargraph
+.rubocop.yml
 .DS_Store
 src/.DS_Store
 

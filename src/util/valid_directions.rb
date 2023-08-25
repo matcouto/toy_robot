@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
 module ValidDirections
-  DIRECTIONS = %w[NORTH EAST SOUTH WEST].freeze
+  DIRECTIONS_MAP = {
+    north: 'NORTH',
+    east: 'EAST',
+    south: 'SOUTH',
+    west: 'WEST'
+  }.freeze
+  DIRECTIONS = DIRECTIONS_MAP.values
 end

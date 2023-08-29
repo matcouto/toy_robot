@@ -4,15 +4,17 @@ require './src/services/commands/move'
 require './src/services/commands/place'
 require './src/services/commands/report'
 require './src/services/commands/rotate'
-
+require './src/util/custom_exceptions'
 module Commands
   class Processor
+    include CustomExceptions
+
     def initialize(table, robot)
       @table = table
       @robot = robot
     end
 
-    INPUT_COMMANDS = {
+    COMMANDS = {
       'PLACE' => Commands::Place,
       'MOVE' => Commands::Move,
       'LEFT' => Commands::Rotate,
@@ -21,11 +23,12 @@ module Commands
     }.freeze
 
     def call(command)
-      # TODO: Create custom exception for place - Nested exceptions
       command_name = parse_command(command)
-      raise "Unknown command: #{command_name}" unless INPUT_COMMANDS.key?(command_name)
 
-      INPUT_COMMANDS[command_name].new(
+      raise CommandInvalidError, command_name unless COMMANDS.key?(command_name)
+      raise RobotNotPlacedError unless robot.placed? || robot_first_move?(command_name)
+
+      COMMANDS[command_name].new(
         table,
         robot
       ).call(command)
@@ -34,6 +37,10 @@ module Commands
     private
 
     attr_reader :table, :robot
+
+    def robot_first_move?(command_name)
+      command_name == 'PLACE'
+    end
 
     def parse_command(command)
       command.upcase.split(' ').first

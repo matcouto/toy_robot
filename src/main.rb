@@ -1,20 +1,29 @@
 # frozen_string_literal: true
 
 require './src/toy_robot_game'
-require './src/domain/board'
+require './src/domain/table'
 require './src/domain/robot'
 
 puts 'Welcome to Toy Robot Game!'
 
 game = ToyRobotGame.new(
-  table: Board.new(5, 5),
+  table: Table.new(5, 5),
   robot: Robot.new
 )
 
 loop do
-  input_data = gets
-  command = input_data
-  game.process(command)
+  command = gets.chomp
 
-  break command if /exit/ =~ command
+  if /exit/ =~ command
+    if game.errors.any?
+      puts '===' * 20
+      puts game.errors
+      puts '===' * 20
+    end
+
+    break command
+  else
+    game.process(command)
+    next
+  end
 end

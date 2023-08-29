@@ -4,9 +4,10 @@ source "https://rubygems.org"
 
 group :development, :test do
   gem 'byebug'
-  gem "solargraph"
   gem "rspec"
+  gem 'rspec_junit_formatter'
   gem "rubocop"
+  gem "solargraph"
 end
 
 group :test do

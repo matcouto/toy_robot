@@ -15,7 +15,7 @@ describe Commands::Place do
 
     context 'with a position outside bounds' do
       it 'raises PositionOutOfBounds' do
-        expect { subject.call('PLACE 6,3,NORTH') }.to raise_error(CustomExceptions::PositionOutOfBoundsError)
+        expect { subject.call('PLACE 6,3,NORTH') }.to raise_error(CustomExceptions::PositionOutsideBoundsError)
       end
     end
 

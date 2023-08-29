@@ -32,7 +32,7 @@ module Commands
     end
 
     def validate_position_within_bounds(position)
-      raise PositionOutOfBoundsError, position unless position_within_bounds?(position)
+      raise PositionOutsideBoundsError, position unless position_within_bounds?(position)
     end
   end
 end

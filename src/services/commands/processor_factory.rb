@@ -21,6 +21,7 @@ module Commands
       @robot = robot
     end
 
+    # Instantiate the correct command class based on the command name
     def create_processor(command)
       command_name = parse_command(command)
       command_class = COMMANDS[command_name]
@@ -35,7 +36,7 @@ module Commands
     attr_reader :table, :robot
 
     def parse_command(command)
-      command.upcase.split(' ').first
+      command.split(' ').first
     end
   end
 end

@@ -9,13 +9,14 @@ module Commands
     include CustomExceptions
 
     ROTATIONS = %w[LEFT RIGHT].freeze
+    LEFT_ROTATION = -1
+    RIGHT_ROTATION = 1
 
     def call(command)
-      raise CommandInvalidError, command unless ROTATIONS.include?(command.upcase)
+      raise CommandInvalidError, command unless ROTATIONS.include?(command)
 
-      # byebug
       current_direction_index = DIRECTIONS.index(@robot.direction)
-      pointer = command.upcase.match(/LEFT/) ? -1 : 1
+      pointer = command.match(/LEFT/) ? LEFT_ROTATION : RIGHT_ROTATION
       new_direction = DIRECTIONS.rotate(pointer)[current_direction_index]
       @robot.direction = new_direction
     end

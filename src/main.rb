@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'logger'
 require './src/toy_robot_game'
 require './src/services/commands/processor_factory'
 require './src/domain/table'
@@ -10,9 +11,9 @@ puts 'Welcome to Toy Robot Game!'
 def display_errors(game_errors)
   return if game_errors.nil? || game_errors.empty?
 
-  puts '==== Errors found during execution ===='
-  puts game_errors
-  puts '=' * 39
+  logger = Logger.new($stdout)
+  logger.level = Logger::ERROR
+  game_errors.each { |error| logger.error(error) }
 end
 
 table = Table.new(5, 5)
@@ -29,10 +30,15 @@ loop do
   command = gets.chomp
 
   if /exit/ =~ command
+    # Displays errors before exiting via 'exit' command
     display_errors(game.errors)
     break
   else
-    game.process(command)
+    game.process(command.upcase)
     next
   end
+rescue Interrupt
+  # Displays errors before exiting via ctrl+c
+  display_errors(game.errors)
+  break
 end

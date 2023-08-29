@@ -10,8 +10,6 @@ class ToyRobotGame
     @errors = []
   end
 
-  attr_accessor :errors
-
   def process(command)
     processor = @processor_factory.create_processor(command)
     check_placement(command)
@@ -33,7 +31,7 @@ class ToyRobotGame
   end
 
   def parse_command(command)
-    command.upcase.split(' ').first
+    command.split(' ').first
   end
 
   def check_placement(command)

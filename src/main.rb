@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# main.rb
-
 require './src/toy_robot_game'
 require './src/services/commands/processor_factory'
 require './src/domain/table'
@@ -19,6 +17,7 @@ def main
 
     toy_robot_game.run(command)
   rescue Interrupt
+    puts "\nExiting..."
     break
   end
 end

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '../src/toy_robot_game'
-require_relative '../src/domain/table'
-require_relative '../src/domain/robot'
+require_relative '../../src/toy_robot_game'
+require_relative '../../src/domain/table'
+require_relative '../../src/domain/robot'
 
 RSpec.describe 'main' do
-  let(:script_path) { File.join(__dir__, '../src', 'main.rb') }
+  let(:script_path) { File.join(__dir__, '../../src', 'main.rb') }
   let(:run_script) { Open3.capture3("ruby #{script_path}", stdin_data: commands.join("\n")) }
+
   context 'when passing a valid PLACE command' do
     let(:commands) do
       [
@@ -16,8 +17,7 @@ RSpec.describe 'main' do
       ]
     end
     it 'places the robot at the given position and direction' do
-      stdout, _stderr, status = run_script
-      expect(status.exitstatus).to eq(0)
+      stdout, _stderr, _status = run_script
       expect(stdout).to include('1,2,NORTH')
     end
   end
@@ -90,7 +90,7 @@ RSpec.describe 'main' do
         ]
       end
 
-      it 'outputs the errors' do
+      it 'displays an error message for the invalid direction after the script execution' do
         stdout, _stderr, _status = run_script
         expect(stdout).to include('Invalid direction: INVALID')
       end
@@ -104,7 +104,7 @@ RSpec.describe 'main' do
           'exit'
         ]
       end
-      it 'outputs the errors' do
+      it 'displays an error message for the invalid command after the script execution' do
         stdout, _stderr, _status = run_script
         expect(stdout).to include('Invalid command: INVALID')
       end

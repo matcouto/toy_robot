@@ -1,0 +1,124 @@
+:::: TEST DATA ::::
+You must start with a PLACE command followed by X and Y coordinates and a direction it is facing.
+
+=================================================================
+Test 1: Robot moves to the edge of the table and rotates to the right(East)
+PLACE 3,3,NORTH
+MOVE
+MOVE
+REPORT
+RIGHT
+REPORT
+
+Expected Result:
+Output: 3,4,NORTH
+Output: 3,4,EAST
+
+=================================================================
+Test 2: Robot turns left and right multiple times without change position
+PLACE 2,2,EAST
+LEFT
+LEFT
+LEFT
+RIGHT
+RIGHT
+RIGHT
+REPORT
+
+Expected Result:
+Output: 2,2,EAST
+
+=================================================================
+Test 3: Robot is placed and rotates to all cardinal directions
+PLACE 1,1,NORTH
+RIGHT
+REPORT
+RIGHT
+REPORT
+RIGHT
+REPORT
+RIGHT
+REPORT
+
+Expected Result:
+Output: 1,1,EAST
+Output: 1,1,SOUTH
+Output: 1,1,WEST
+Output: 1,1,NORTH
+
+=================================================================
+Test 4: Robot reaches the table limit but won't fall. It remains in the last valid position
+PLACE 3,4,NORTH
+MOVE
+MOVE
+MOVE
+REPORT
+
+Expected Result:
+Output: 3,4,NORTH
+
+=================================================================
+TEST 5: robot will ignore invalid commands
+INVALID_1
+INVALID_2
+REPORT
+
+Expected Result:
+The application should ignore all the invalid commands and wait for the next command to be entered
+
+=================================================================
+TEST 6: robot won't be placed in an invalid position
+
+PLACE 5,6,NORTH
+REPORT
+
+Expected Result:
+The application ignores the invalid PLACE command and waits for the next command to be entered
+
+=================================================================
+TEST 7: robot can be placed multiple times
+
+PLACE 1,1,NORTH
+REPORT
+PLACE 2,2,EAST
+REPORT
+
+Expected Result:
+Output: 1,1,NORTH
+Output: 2,2,EAST
+
+=================================================================
+TEST 8: robot navigates to all edges
+
+PLACE 0,0,EAST
+REPORT
+MOVE
+MOVE
+MOVE
+MOVE
+REPORT
+LEFT
+MOVE
+MOVE
+MOVE
+MOVE
+REPORT
+LEFT
+MOVE
+MOVE
+MOVE
+MOVE
+REPORT
+LEFT
+MOVE
+MOVE
+MOVE
+MOVE
+REPORT
+
+Expected Result:
+Output: 0,0,EAST
+Output: 4,0,EAST
+Output: 4,4,NORTH
+Output: 0,4,WEST
+Output: 0,0,SOUTH

@@ -7,6 +7,7 @@ require_relative '../../src/domain/robot'
 RSpec.describe 'main' do
   let(:script_path) { File.join(__dir__, '../../src', 'main.rb') }
   let(:run_script) { Open3.capture3("ruby #{script_path}", stdin_data: commands.join("\n")) }
+
   context 'when passing a valid PLACE command' do
     let(:commands) do
       [

@@ -1,4 +1,5 @@
-TEST DATA
+:::: TEST DATA ::::
+You must start with a PLACE command followed by X and Y coordinates and a direction it is facing.
 
 =================================================================
 Test 1: Robot moves to the edge of the table and rotates to the right(East)

@@ -7,7 +7,7 @@ defaults: &defaults
   parallelism: 2
 
   docker:
-    - image: circleci/ruby:2.5.0-node-browsers
+    - image: cimg/ruby:2.3.0
 jobs:
   coverage:
     <<: *defaults
@@ -34,14 +34,12 @@ jobs:
           path: ~/toy_robot_game/coverage
           destination: coverage
   build:
-    docker:
-      - image: cimg/ruby:2.7-node
+    <<: *defaults
     steps:
       - checkout
       - ruby/install-deps
   test:
-    docker:
-      - image: cimg/ruby:2.7-node
+    <<: *defaults
     steps:
       - checkout
       - ruby/install-deps

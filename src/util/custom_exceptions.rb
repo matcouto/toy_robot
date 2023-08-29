@@ -24,4 +24,10 @@ module CustomExceptions
       super("Position [#{position.x_axis}, #{position.y_axis}] is invalid")
     end
   end
+
+  class RobotNotPlacedError < StandardError
+    def initialize
+      super('The robot has not been placed yet. Please place the robot first')
+    end
+  end
 end

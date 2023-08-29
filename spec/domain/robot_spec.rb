@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
 require_relative '../../src/util/custom_exceptions'
 require_relative '../../src/domain/robot'
 

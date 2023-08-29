@@ -13,6 +13,7 @@ module Commands
     def call(command)
       raise CommandInvalidError, command unless ROTATIONS.include?(command.upcase)
 
+      # byebug
       current_direction_index = DIRECTIONS.index(@robot.direction)
       pointer = command.upcase.match(/LEFT/) ? -1 : 1
       new_direction = DIRECTIONS.rotate(pointer)[current_direction_index]

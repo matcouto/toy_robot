@@ -13,10 +13,7 @@ class ToyRobotGame
   attr_accessor :errors
 
   def process(command)
-    Commands::Processor.new(
-      table,
-      robot
-    ).call(command)
+    Commands::Processor.new(table, robot).call(command)
   rescue StandardError => e
     errors << e
   end

@@ -5,7 +5,7 @@ require './src/services/commands/base'
 module Commands
   class Report < Base
     def call(_command = nil)
-      puts "Output: #{@robot.current_position}"
+      puts "Output: #{@robot.current_position.strip}"
     end
   end
 end

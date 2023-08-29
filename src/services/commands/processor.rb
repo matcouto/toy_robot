@@ -26,7 +26,7 @@ module Commands
       command_name = parse_command(command)
 
       raise CommandInvalidError, command_name unless COMMANDS.key?(command_name)
-      return unless robot.placed? || robot_first_move?(command_name)
+      raise RobotNotPlacedError unless robot.placed? || robot_first_move?(command_name)
 
       COMMANDS[command_name].new(
         table,

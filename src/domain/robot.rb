@@ -23,6 +23,8 @@ class Robot
   end
 
   def current_position
+    raise RobotNotPlacedError unless placed?
+
     "#{position.current.join(',')},#{direction}"
   end
 

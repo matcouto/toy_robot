@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
 require_relative '../../src/domain/position'
 require_relative '../../src/domain/table'
 

@@ -22,7 +22,7 @@ def main
 end
 
 def display_welcome_message
-  project_root = File.expand_path('..', 'toy_robot')
+  project_root = File.expand_path('..', File.dirname(__FILE__))
   welcome_message_path = File.join(project_root, 'docs', 'welcome_message.txt')
   puts File.read(welcome_message_path)
 end

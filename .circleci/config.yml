@@ -24,7 +24,7 @@ jobs:
             - gem-cache-{{ arch }}-{{ .Branch }}
             - gem-cache
 
-      - run: bundle install --path vendor/bundle
+      - run: bundle install
 
       - run:
           name: Merge and check coverage

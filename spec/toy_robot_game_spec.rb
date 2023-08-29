@@ -6,32 +6,38 @@ require_relative '../src/services/commands/processor_factory'
 require_relative '../src/toy_robot_game'
 
 describe ToyRobotGame do
-  describe '#process' do
+  describe '#run' do
     let(:table) { Table.new(5, 5) }
     let(:robot) { Robot.new }
+    let(:fake_logger) { double('Logger', error: nil) }
     let(:processor_factory) { Commands::ProcessorFactory.new(table, robot) }
     let(:toy_robot_game) do
-      described_class.new(table: table, robot: robot, processor_factory: processor_factory)
+      described_class.new(
+        table: table,
+        robot: robot,
+        processor_factory: processor_factory,
+        logger: fake_logger
+      )
     end
 
-    context 'when Commands::ProcessorFactory fails' do
-      it 'rescues an instance of StandardError and add it to the errors array' do
-        expect do
-          toy_robot_game.process('INVALID COMMAND')
-        end.to change {
-          toy_robot_game.errors.size
-        }.by(1)
-        expect(toy_robot_game.errors).to include(an_instance_of(CustomExceptions::CommandInvalidError))
+    context 'when processing a given command fails' do
+      before { allow(fake_logger).to receive(:error) }
+
+      it 'logs an error' do
+        toy_robot_game.run('FOOBAR')
+
+        expect(fake_logger).to have_received(:error).with('Invalid command: FOOBAR')
       end
     end
 
-    context 'when Commands::Processor succeeds' do
+    context 'when processing a given command succeeds' do
       it 'executes the processor call method without errors' do
-        expect do
-          toy_robot_game.process('PLACE 0,0,NORTH')
-        end.not_to(change { toy_robot_game.errors.size })
+        expect(fake_logger).not_to receive(:error)
+        expect(robot.placed?).to be(false)
 
-        expect(toy_robot_game.errors).to be_empty
+        toy_robot_game.run('PLACE 0,0,NORTH')
+
+        expect(robot.placed?).to be(true)
       end
     end
   end

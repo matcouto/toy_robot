@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require './src/domain/robot'
-require './src/domain/position'
+require './src/util/custom_exceptions'
 require './src/util/valid_directions'
 
 class Robot
@@ -23,7 +22,7 @@ class Robot
   end
 
   def current_position
-    raise RobotNotPlacedError unless placed?
+    raise CustomExceptions::RobotNotPlacedError unless placed?
 
     "#{position.current.join(',')},#{direction}"
   end
@@ -37,6 +36,6 @@ class Robot
   def validate_direction(new_direction)
     return if DIRECTIONS.include?(new_direction)
 
-    raise DirectionInvalidError, new_direction
+    raise CustomExceptions::DirectionInvalidError, new_direction
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../../src/util/custom_exceptions'
+require_relative '../../src/domain/position'
 require_relative '../../src/domain/robot'
 
 RSpec.describe Robot do

@@ -26,5 +26,14 @@ describe Commands::ProcessorFactory do
         end.to raise_error(CustomExceptions::CommandInvalidError)
       end
     end
+
+    context 'when given an invalid command' do
+      it 'raises CommandInvalidError' do
+        command = 'INVALID'
+        expect do
+          processor_factory.create_processor(command)
+        end.to raise_error(CustomExceptions::CommandInvalidError)
+      end
+    end
   end
 end

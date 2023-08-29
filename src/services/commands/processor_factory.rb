@@ -34,10 +34,6 @@ module Commands
 
     attr_reader :table, :robot
 
-    def robot_first_move?(command_name)
-      command_name == 'PLACE'
-    end
-
     def parse_command(command)
       command.upcase.split(' ').first
     end

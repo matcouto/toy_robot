@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# toy_robot_game
 require './src/domain/position'
 require './src/util/custom_exceptions'
 require 'logger'
+
 class ToyRobotGame
   def initialize(table:, robot:, processor_factory:, logger:)
     @table = table

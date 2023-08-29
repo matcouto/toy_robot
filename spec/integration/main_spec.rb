@@ -4,7 +4,7 @@ require_relative '../../src/toy_robot_game'
 require_relative '../../src/domain/table'
 require_relative '../../src/domain/robot'
 
-RSpec.describe 'main' do
+RSpec.describe '#main' do
   let(:script_path) { File.join(__dir__, '../../src', 'main.rb') }
   let(:run_script) { Open3.capture3("ruby #{script_path}", stdin_data: commands.join("\n")) }
 

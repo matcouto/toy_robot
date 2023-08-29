@@ -11,7 +11,6 @@ def main
   toy_robot_game = setup_toy_robot_game(logger)
 
   loop do
-    print '> '
     command = gets.chomp.upcase
     break if command == 'EXIT'
 

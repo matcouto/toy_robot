@@ -10,6 +10,8 @@ class ToyRobotGame
     @errors = []
   end
 
+  attr_accessor :errors
+
   def process(command)
     processor = @processor_factory.create_processor(command)
     check_placement(command)

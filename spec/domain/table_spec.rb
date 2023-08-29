@@ -16,7 +16,7 @@ RSpec.describe Table do
       end
     end
 
-    context 'when position is out of bounds' do
+    context 'when position is outside bounds' do
       let(:position) { Position.new(width + 1, height + 1) }
 
       it 'returns false' do

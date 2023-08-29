@@ -8,7 +8,7 @@ module Commands
     include CustomExceptions
     include ValidDirections
 
-    def call(_command)
+    def call(_command = nil)
       current_position = @robot.position.clone
       set_position_based_on_direction
 
@@ -38,9 +38,8 @@ module Commands
       end
     end
 
-    def rollback_move(current_position, invalid_position)
+    def rollback_move(current_position, _invalid_position)
       @robot.position = current_position
-      raise PositionOutOfBoundsError, invalid_position
     end
   end
 end

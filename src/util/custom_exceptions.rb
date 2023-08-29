@@ -15,7 +15,7 @@ module CustomExceptions
 
   class PositionOutOfBoundsError < StandardError
     def initialize(position)
-      super("Position [#{position.x_axis}, #{position.y_axis}] is out of bounds")
+      super("Position [#{position.x_axis}, #{position.y_axis}] is outside bounds")
     end
   end
 

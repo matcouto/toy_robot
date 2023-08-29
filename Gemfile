@@ -11,4 +11,5 @@ end
 
 group :test do
   gem 'open3'
+  gem 'simplecov', require: false
 end

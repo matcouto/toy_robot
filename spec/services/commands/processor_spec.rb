@@ -26,11 +26,22 @@ describe Commands::Processor do
     context 'when robot is not placed' do
       let(:command) { 'LEFT' }
 
-      # before { robot.position = nil }
-
       it 'raises RobotNotPlacedError' do
         robot.position = nil
         expect { subject.call(command) }.to raise_error(CustomExceptions::RobotNotPlacedError)
+      end
+    end
+
+    context 'when command is valid' do
+      let(:command) { 'LEFT' }
+
+      it 'does not raise any error' do
+        expect { subject.call(command) }.not_to raise_error
+      end
+
+      it 'calls the command passed into #call method' do
+        robot.direction = 'NORTH'
+        expect { subject.call(command) }.to change { robot.direction }.to('WEST')
       end
     end
   end

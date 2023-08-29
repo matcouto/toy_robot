@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 require 'open3'
+require 'simplecov'
+
+SimpleCov.start
 
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|

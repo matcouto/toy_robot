@@ -7,7 +7,7 @@ defaults: &defaults
   parallelism: 2
 
   docker:
-    - image: cimg/ruby:2.3.0
+    - image: cimg/ruby:3.2.2
 jobs:
   coverage:
     <<: *defaults
